@@ -1,11 +1,13 @@
-import sys
+# -*- coding: utf-8 -*-
+
+# Form implementation generated from reading ui file 'untitled.ui'
+#
+# Created by: PyQt5 UI code generator 5.13.2
+#
+# WARNING! All changes made in this file will be lost!
+
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtWidgets import QApplication, QMainWindow
-from PyQt5.QtGui import QPainter, QPen
-from PyQt5.QtCore import Qt
-
-from random import randint
 
 
 class Ui_MainWindow(object):
@@ -38,30 +40,3 @@ class Ui_MainWindow(object):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.pushButton.setText(_translate("MainWindow", "Создать окружность"))
-
-
-class MyWidget(QMainWindow, Ui_MainWindow):
-    def __init__(self):
-        super().__init__()
-        self.setupUi(self)
-        self.pushButton.clicked.connect(self.make)
-        self.check = False
-        self.colors = [Qt.yellow, Qt.red, Qt.white, Qt.black, Qt.blue, Qt.darkBlue, Qt.cyan, Qt.green]
-
-    def make(self):
-        self.check = True
-        self.update()
-
-    def paintEvent(self, event):
-        if self.check:
-            painter = QPainter(self)
-            painter.setPen(QPen(self.colors[randint(0, 7)], 15, Qt.SolidLine))
-            n = randint(200, 500)
-            painter.drawEllipse(640 - int(n / 2) - 100, 310 - int(n / 2), n, n)
-
-
-if __name__ == '__main__':
-    app = QApplication(sys.argv)
-    ex = MyWidget()
-    ex.show()
-    sys.exit(app.exec_())
